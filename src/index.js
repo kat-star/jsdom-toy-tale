@@ -28,17 +28,14 @@ function fetchToys() {
       getToyContainer().innerHTML = allToys
         .map(toy => renderSingleToy(toy))
         .join('');
-      // const buttons = document.querySelectorAll('.like-btn') // []
-      // for (let button of buttons) {
-      //   addLikeListener(button);
-      // }
     });
 }
 
-//function to get the toy container (will have to append new toys into it)
-function getToyContainer() {
-  return document.getElementById('toy-collection');
-}
+//function to get the toy container (will have to append new toys into it). Probably better to make it a constant variable
+  function getToyContainer() {
+    return document.getElementById('toy-collection');
+  }
+
 
 //this renders a single toy and creates a new card for it
 function renderSingleToy(toy) {
@@ -47,13 +44,15 @@ function renderSingleToy(toy) {
     <h2>${toy.name}</h2>
     <img src="${toy.image}" class="toy-avatar" />
     <p>${toy.likes} Likes </p>
-    <button class="like-btn" data-id="${toy.id}" data-likes="${toy.likes}" >Like <3</button>
+    <button class="like-btn" data-id="${toy.id}" >Like <3</button>
   </div >`;
 }
 
 //will listen for 'submit' clicks. If something submitted, will then run getToyInfo
+//narrowed down the scope of the event listener by finding the form submit class name vs. document.addEventListener
 function listenForSubmit() {
-  document.addEventListener('submit', function(event) {
+  // const formElement = document.getElementsByClassName('add-toy-form')[0]
+document.addEventListener('submit', function(event) {
     event.preventDefault();
     getToyInfo(event);
   });
@@ -75,6 +74,7 @@ function getToyInfo(event) {
 }
 
 //createToy will post a fetch to create a new toy that gets appended to the toy container. Since renderSingleToy goes through and creates a new HTML string 
+//when we create a new toy, 1) send a post request to the database 2)update the DOM to reflect the new toy
 function createToy(toy) {
   fetch('http://localhost:3000/toys', {
     method: 'POST',
@@ -87,12 +87,16 @@ function createToy(toy) {
   })
   .then(response => response.json())
   .then(data => {
-    const newToy = renderSingleToy(data);
-    getToyContainer().appendChild(newToy);
+    allToys.push(data);
+    // const newToy = renderSingleToy(data);
+    // const newToy = document.createElement('div');
+    // newToy.innerHTML = renderSingleToy(data);
+    getToyContainer().insertAdjacentHTML('beforeend', renderSingleToy(data))
   });
 }
 
 // function will listen for a like click on toy container. Once clicked, send a patch request to update likes by 1
+//listenForLike listener added to the parent node so that any clicks inside will fire, and the if statement will only make those clicks on the button be the one to go through (event bubbling/event delegation)
 function listenForLike() {
   getToyContainer().addEventListener('click', (event) => {
     if (event.target.className === 'like-btn' ) {
@@ -103,7 +107,7 @@ function listenForLike() {
   });
 }
 
-//the patch request. Once I get the updated object back, update the DOM
+//the patch request. Once I get the updated object back, update the DOM, and update the like count from the allToys
 function updateLikeCount(toy) {
   fetch(`http://localhost:3000/toys/${toy.id}`, {
     method: 'PATCH',

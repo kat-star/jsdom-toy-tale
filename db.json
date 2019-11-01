@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 25
+      "likes": 26
     },
     {
       "id": 2,
@@ -81,7 +81,7 @@
     {
       "name": "thischick",
       "image": "fa;lksdflas",
-      "likes": 0,
+      "likes": 3,
       "id": 14
     },
     {
@@ -93,7 +93,7 @@
     {
       "name": "",
       "image": "",
-      "likes": 0,
+      "likes": 1,
       "id": 16
     },
     {
@@ -101,6 +101,72 @@
       "image": "",
       "likes": 0,
       "id": 17
+    },
+    {
+      "name": "jgiopss",
+      "image": "nigsn",
+      "likes": 0,
+      "id": 18
+    },
+    {
+      "name": "jgiopss",
+      "image": "nigsn",
+      "likes": 0,
+      "id": 19
+    },
+    {
+      "name": "Pizza",
+      "image": "dksv",
+      "likes": 0,
+      "id": 20
+    },
+    {
+      "name": "pizza",
+      "image": "jds",
+      "likes": 0,
+      "id": 21
+    },
+    {
+      "name": "pizza",
+      "image": "",
+      "likes": 0,
+      "id": 22
+    },
+    {
+      "name": "jimbo",
+      "image": "",
+      "likes": 0,
+      "id": 23
+    },
+    {
+      "name": "susie",
+      "image": "",
+      "likes": 0,
+      "id": 24
+    },
+    {
+      "name": "bob",
+      "image": "",
+      "likes": 0,
+      "id": 25
+    },
+    {
+      "name": "joe",
+      "image": "",
+      "likes": 2,
+      "id": 26
+    },
+    {
+      "name": "Totoro",
+      "image": "",
+      "likes": 1,
+      "id": 27
+    },
+    {
+      "name": "baby totoro",
+      "image": "",
+      "likes": 7,
+      "id": 28
     }
   ]
 }
